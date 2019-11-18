@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "Pandemic",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "Calvin",
+  "author": "Calvin and Jay",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.6.4",
