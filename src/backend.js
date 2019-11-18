@@ -4,7 +4,7 @@ export class Game {
     this.cities = [city1, city2, city3, city4, city5, city6, city7, city8, city9, city10];
     this.cityCards = [];
     this.flightOptions = [];
-    this.eventCards = ["jetCard", "adrenelineCard"]
+    this.eventCards = ["jetCard", "adrenelineCard"];
     this.eventCard = "";
     this.isGreenCured = false;
     this.isRedCured = false;
@@ -17,83 +17,93 @@ export class Game {
 
 export class Portland {
   constructor (){
-    this.name = "Portland"
+    this.name = "Portland";
     this.cubes = 0;
     this.color = "Red";
     this.driveOption = [Denver, SanFransico];
+    this.recentlyInfected = false;
   }
 }
 export class SanFransico {
   constructor (){
-    this.name = "San Fransico"
+    this.name = "San Fransico";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [Portland, La]
+    this.driveOption = [Portland, La];
+    this.recentlyInfected = false;
   }
 }
 export class La {
   constructor (){
-    this.name = "Los Angeles"
+    this.name = "Los Angeles";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [SanFransico, Dallas]
+    this.driveOption = [SanFransico, Dallas];
+    this.recentlyInfected = false;
   }
 }
 export class Dallas {
   constructor (){
-    this.name = "Dallas"
+    this.name = "Dallas";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [Denver, La, Atlanta]
+    this.driveOption = [Denver, La, Atlanta];
+    this.recentlyInfected = false;
   }
 }
 export class Denver {
   constructor (){
-    this.name = "Denver"
+    this.name = "Denver";
     this.cubes = 0;
     this.color = "Red";
     this.driveOption = [Chicago, Dallas, Portland]
+    this.recentlyInfected = false;
   }
 }
 export class Chicago {
   constructor (){
-    this.name = "Chicago"
+    this.name = "Chicago";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [Denver, Boston, Ny]
+    this.driveOption = [Denver, Boston, Ny];
+    this.recentlyInfected = false;
   }
 }
 export class Ny {
   constructor (){
-    this.name = "New York"
+    this.name = "New York";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [Chicago, Boston]
+    this.driveOption = [Chicago, Boston];
+    this.recentlyInfected = false;
   }
 }
 export class Boston {
   constructor (){
-    this.name = "Boston"
+    this.name = "Boston";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [Chicago, Ny, Atlanta]
+    this.driveOption = [Chicago, Ny, Atlanta];
+    this.recentlyInfected = false;
   }
 }
 export class Miami {
   constructor (){
-    this.name = "Miami"
+    this.name = "Miami";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [Atlanta, Dallas]
+    this.driveOption = [Atlanta, Dallas];
+    this.recentlyInfected = false;
   }
 }
 export class Atlanta {
   constructor (){
-    this.name = "Atlanta"
+    this.name = "Atlanta";
     this.cubes = 0;
     this.color = "Green";
     this.driveOption = [Dallas, Miami, Boston];
-    this.isResearch = true
+    this.recentlyInfected = false;
+    this.isResearch = true;
 
 
   }
@@ -104,10 +114,10 @@ export class Atlanta {
 Game.prototype.useEventCard = function () {
   if (this.eventCard === "jetCard"){
     this.flightOptions = [Portland, SanFransico, La, Dallas, Denver, Chicago, Ny, Boston, Miami, Atlanta];
-    this.eventCard = ""
+    this.eventCard = "";
   }else if (this.eventCard === "adrenelineCard"){
     this.actionsLeft ++;
-    this.eventCard = ""
+    this.eventCard = "";
   }
 };
 
@@ -119,12 +129,13 @@ Game.prototype.move = function (clickedCity) {
 };
 
 Game.prototype.pass = function () {
-  this.actionsLeft = 0
+  this.actionsLeft = 0;
 };
 
 Game.prototype.pickDiseaseCity = function() {
   let i =  Math.floor(Math.random() * 10);
-  this.cities[i].cubes = 4
+  this.cities[i].cubes = 4;
+  this.cities[i].recentlyInfected = true;
 }
 
 Game.prototype.removeCube = function() {
@@ -134,7 +145,7 @@ Game.prototype.removeCube = function() {
 
     }
     else if ((this.playerCity.color === "Green") && (this.isGreenCured === true)) {
-      this.playerCity.cubes = 0
+      this.playerCity.cubes = 0;
 
 
     } else {
@@ -147,14 +158,15 @@ Game.prototype.removeCube = function() {
 }
 
 Game.prototype.startGame = function (game){
-  game.pickDiseaseCity();
+
+    game.pickDiseaseCity();
   game.pickDiseaseCity();
   game.pickDiseaseCity();
   game.pickDiseaseCity();
   let randomCity1 =  Math.floor(Math.random() * 10);
   let randomCity2 =  Math.floor(Math.random() * 10);
   let randomEventCard =  Math.floor(Math.random() * 2);
-  this.eventCard = eventCards[randomEventCard];
+  this.eventCard = this.eventCards[randomEventCard];
   this.cityCards = [this.cities[randomCity1], this.cities[randomCity2]];
   this.flightOptions = [this.cities[randomCity1], this.cities[randomCity2]];
 }

@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { Game, Dallas, Portland, La, SanFransico, Denver, Chicago, Ny, Boston, Miami, Atlanta, eventCards } from './../src/backend.js';
+import { Game, Dallas, Portland, La, SanFransico, Denver, Chicago, Ny, Boston, Miami, Atlanta } from './../src/backend.js';
 
 
 
@@ -21,6 +21,16 @@ $(document).ready(function () {
     let mia = new Miami();
     let game = new Game(atl, por, la, sf, den, dal, chi, ny, bos, mia);
     game.startGame(game);
+    let timer = 3000
+    for(let i=0; i<game.cities.length; i++){
+      timer += 1000
+      setTimeout(function(){
+      if (game.cities[i].recentlyInfected === true){
+          $("#diseaseDisplay").append(game.cities[i].name);
+      }
+    }, timer)
+    }
+
     const showCard  = (game) => {
       let card1 = (game.cityCards[0].name);
       let card2 = game.cityCards[1].name;
@@ -31,4 +41,5 @@ $(document).ready(function () {
     }
     showCard(game);
   });
+
 });
