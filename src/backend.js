@@ -105,11 +105,19 @@ Game.prototype.pickDiseaseCity = function() {
 }
 
 Game.prototype.removeCube = function() {
-  if (this.playerCity.cubes < 0) {
-    if ((this.playerCity.color = "Red" && this.isRedCured = true) || (this.playerCity.color = "Green" && this.isGreenCured = true)) {
+  if (this.playerCity.cubes > 0) {
+    if ((this.playerCity.color === "Red") && (this.isRedCured === true)){
+      this.playerCity.cubes = 0;
+
+    }
+    else if ((this.playerCity.color === "Green") && (this.isGreenCured === true)) {
       this.playerCity.cubes = 0
+
+
     } else {
       this.playerCity.cubes --;
+
+
     }
     this.actionsLeft --;
   }

@@ -51,8 +51,12 @@ describe ('remove cubes', () =>{
     let ny = new Ny ();
     let bos = new Boston ();
     let mia = new Miami();
-    let game = new Game(atl, por, la, sf, den, dal, chi, ny, bos, mia);
+    let game = new Game(por, atl, la, sf, den, dal, chi, ny, bos, mia);
+    atl.cubes = 4;
+    game.isGreenCured = false
     game.removeCube();
-    expect(por.cubes).toEqual(-1)
+
+    expect(atl.cubes).toEqual(3);
+    expect(game.actionsLeft).toEqual(1)
   })
 })
