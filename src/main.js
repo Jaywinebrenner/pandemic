@@ -27,6 +27,7 @@ $(document).ready(function () {
       setTimeout(function(){
       if (game.cities[i].recentlyInfected === true){
           $("#diseaseDisplay").append(game.cities[i].name);
+          game.cities[i].recentlyInfected = false
       }
     }, timer)
     }
