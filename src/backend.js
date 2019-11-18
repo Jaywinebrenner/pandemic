@@ -1,31 +1,32 @@
 export class Game {
-  constructor() {
-    this.playerCity = Portland;
-    this.cities = [Portland, SanFransico, La, Dallas, Denver, Chicago, Ny, Boston, Miami, Atlanta];
+  constructor(city1, city2, city3, city4, city5, city6, city7, city8, city9, city10) {
+    this.playerCity = city2;
+    this.cities = [city1, city2, city3, city4, city5, city6, city7, city8, city9, city10];
     this.cityCards = [];
     this.flightOptions = [];
     this.eventCard = "";
     this.isGreenCured = false;
     this.isRedCured = false;
+    this.actionsLeft = 2;
 
   }
 }
 
-class Portland {
+export class Portland {
   constructor (){
     this.cubes = 0;
     this.color = "Red";
     this.driveOption = [Denver, SanFransico];
   }
 }
-class SanFransico {
+export class SanFransico {
   constructor (){
     this.cubes = 0;
     this.color = "Red";
     this.driveOption = [Portland, La]
   }
 }
-class La {
+export class La {
   constructor (){
     this.cubes = 0;
     this.color = "Red";
@@ -39,42 +40,42 @@ export class Dallas {
     this.driveOption = [Denver, La, Atlanta]
   }
 }
-class Denver {
+export class Denver {
   constructor (){
     this.cubes = 0;
     this.color = "Red";
     this.driveOption = [Chicago, Dallas, Portland]
   }
 }
-class Chicago {
+export class Chicago {
   constructor (){
     this.cubes = 0;
     this.color = "Green";
     this.driveOption = [Denver, Boston, Ny]
   }
 }
-class Ny {
+export class Ny {
   constructor (){
     this.cubes = 0;
     this.color = "Green";
     this.driveOption = [Chicago, Boston]
   }
 }
-class Boston {
+export class Boston {
   constructor (){
     this.cubes = 0;
     this.color = "Green";
     this.driveOption = [Chicago, Ny, Atlanta]
   }
 }
-class Miami {
+export class Miami {
   constructor (){
     this.cubes = 0;
     this.color = "Green";
     this.driveOption = [Atlanta, Dallas]
   }
 }
-class Atlanta {
+export class Atlanta {
   constructor (){
     this.cubes = 0;
     this.color = "Green";
@@ -89,7 +90,27 @@ const jetCard =  (game) => {
  game.flightCards = [Portland, SanFransico, La, Dallas, Denver, Chicago, Ny, Boston, Miami, Atlanta];
 
 }
-Game.prototype.drive = function (clickedCity) {
+Game.prototype.move = function (clickedCity) {
 // Clicked city is determined in the front end drop down
-  this.playerCity = clickedCity
+  this.playerCity = clickedCity;
+  this.actionsLeft --;
 };
+Game.prototype.pass = function () {
+  this.actionsLeft = 0
+};
+
+Game.prototype.pickDiseaseCity = function() {
+  let i =  Math.floor(Math.random() * 10);
+  this.cities[i].cubes = 4
+}
+
+Game.prototype.removeCube = function() {
+  if (this.playerCity.cubes < 0) {
+    if ((this.playerCity.color = "Red" && this.isRedCured = true) || (this.playerCity.color = "Green" && this.isGreenCured = true)) {
+      this.playerCity.cubes = 0
+    } else {
+      this.playerCity.cubes --;
+    }
+    this.actionsLeft --;
+  }
+}
