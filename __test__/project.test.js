@@ -60,3 +60,22 @@ describe ('remove cubes', () =>{
     expect(game.actionsLeft).toEqual(1)
   })
 })
+
+describe ('use event card', () => {
+  test ('should use the event card', () => {
+    let atl = new Atlanta ();
+    let por = new Portland ();
+    let la = new La ();
+    let sf = new SanFransico ();
+    let den = new Denver ();
+    let dal = new Dallas ();
+    let chi = new Chicago ();
+    let ny = new Ny ();
+    let bos = new Boston ();
+    let mia = new Miami();
+    let game = new Game(por, atl, la, sf, den, dal, chi, ny, bos, mia);
+    game.eventCard = "adrenelineCard"
+    game.useEventCard();
+    expect(game.actionsLeft).toEqual(3) 
+  })
+})
