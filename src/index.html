@@ -11,17 +11,21 @@
     <button type="button" name="button" id="start">Start</button>
     <div class="row">
       <div class="col-lg-2">
-        <button type="button" name="button">Fly</button>
+        <button id="flyButton" type="button" name="button">Fly</button>
+        <ul id="flightOptions">
+          <li></li>
+        </ul>
       </div>
       <div class="col-lg-2">
         <button type="button" name="button" id="drive">Drive</button>
-        <form id="driveLocation">
-          <select>
-            <option><span id="driveLocation1">city A</span></option>
-            <option><span id="driveLocation2">City B</span></option>
-            <option><span id="driveLocation3">City C</span></option>
-          </select>
-        </form>
+
+
+            <div class="driveOptions"><span id="driveLocation1"></span>
+              <span id="driveLocation2"></span>
+              <span id="driveLocation3"></span>
+            </div>
+
+
       </div>
       <div class="col-lg-2">
         <button type="button" name="button">Use Event Card</button>
@@ -38,7 +42,7 @@
     </div>
     <div class="row">
 <div class="col-lg-6">
-<h2><span id= "diseaseDisplay">Next Disease City</span</h2>
+<h2><span id= "diseaseDisplay">Next Disease City </span</h2>
 </div>
 <div class="col-lg-6">
 <h2>Actions left</h2>
@@ -49,13 +53,29 @@
 </div>
     </div>
     <div class="row">
-      <div class="col-lg-12">
-        <img src="https://www.washingtonpost.com/resizer/y61v2i5uYjFUIVNtdbjW5MpNZ9Q=/767x0/smart/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/4BENII3NWE663BZNUYWEX4WN64.png" alt="">
+      <div class="col-lg-4">
+      <h3>Portland <span id ="Portland"> </span></h3>
+      <h3>San Fransico <span id ="San-Fransisco"> </span> </h3>
+      <h3>Los Angeles <span id ="LA"> </span> </h3>
       </div>
+      <div class="col-lg-4">
+        <h3>Denver <span id ="Denver"> </span></h3>
+        <h3>Chicago <span id ="Chicago"> </span></h3>
+        <h3>Dallas <span id ="Dallas"> </span></h3>
+      </div>
+      <div class="col-lg-4">
+        <h3>New York <span id ="NYC"> </span></h3>
+        <h3>Boston <span id ="Boston"> </span></h3>
+        <h3>Atlanta <span id ="Atlanta"> </span></h3>
+        <h3>Miami <span id ="Miami"> </span></h3>
+
+      </div>
+
 
     </div>
     <div class="row">
 <div class="col-lg-4">
+  <h4>Current city: <span id="currentCitySpan"></span></h4>
   <p><span id ="cityCard1">City Card 1</span>
   <span id ="cityCard2">City Card 2</span>
 <span id ="eventCard">Event Card</span></p>

@@ -20,25 +20,25 @@ export class Portland {
     this.name = "Portland";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [den, sf];
+    this.driveOption = [den, sf, ''];
     this.recentlyInfected = false;
   }
 }
 export class SanFransico {
   constructor (por, la){
-    this.name = "San Fransico";
+    this.name = "San-Fransico";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [por, la];
+    this.driveOption = [por, la, ''];
     this.recentlyInfected = false;
   }
 }
 export class La {
   constructor (sf, dal){
-    this.name = "Los Angeles";
+    this.name = "LA";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [sf, dal];
+    this.driveOption = [sf, dal, ''];
     this.recentlyInfected = false;
   }
 }
@@ -71,10 +71,10 @@ export class Chicago {
 }
 export class Ny {
   constructor (chi, bos){
-    this.name = "New York";
+    this.name = "NYC";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [chi, bos];
+    this.driveOption = [chi, bos, ''];
     this.recentlyInfected = false;
   }
 }
@@ -92,7 +92,7 @@ export class Miami {
     this.name = "Miami";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [atl, dal];
+    this.driveOption = [atl, dal, ''];
     this.recentlyInfected = false;
   }
 }
@@ -166,5 +166,6 @@ Game.prototype.startGame = function (game){
   let randomEventCard =  Math.floor(Math.random() * 2);
   this.eventCard = this.eventCards[randomEventCard];
   this.cityCards = [this.cities[randomCity1], this.cities[randomCity2]];
-  this.flightOptions = [this.cities[randomCity1], this.cities[randomCity2]];
+  this.flightOptions = this.cityCards;
+
 }

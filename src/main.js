@@ -19,24 +19,36 @@ $(document).ready(function () {
   let mia = new Miami ();
   let ny = new Ny ();
   atl.driveOption = [dal, mia, bos];
-  por.driveOption = [den, sf];
-  la.driveOption = [sf, dal];
-  sf.driveOption = [por, la]
+  por.driveOption = [den, sf, ''];
+  la.driveOption = [sf, dal, ''];
+  sf.driveOption = [por, la, '']
   den.driveOption = [chi,dal,por];
   dal.driveOption = [den,la,atl];
   bos.driveOption= [chi, ny, atl];
   chi.driveOption = [den, bos, ny];
-  mia.driveOption = [atl, dal];
-  ny.driveOption = [chi, bos];
+  mia.driveOption = [atl, dal, ''];
+  ny.driveOption = [chi, bos, ''];
   let game = new Game (atl, por, la, sf, den, dal, chi, ny, bos, mia);
+
+  let locationMoveUpdate = (game) => {
+      $("#currentCitySpan").text(game.playerCity.name);
+      $("#driveLocation1").html(game.playerCity.driveOption[0].name);
+      $("#driveLocation2").html(game.playerCity.driveOption[1].name);
+      $("#driveLocation3").html(game.playerCity.driveOption[2].name);
+      $("#actionCounter").html(game.actionsLeft);
+  }
+
+
   $("#start").click(function() {
     game.startGame(game);
+    $("#currentCitySpan").text(game.playerCity.name);
     let timer = 1000
     for(let i=0; i<game.cities.length; i++){
       timer += 400;
       setTimeout(function(){
       if (game.cities[i].recentlyInfected === true){
           $("#diseaseDisplay").append(game.cities[i].name);
+          $("#" + game.cities[i].name).text(game.cities[i].cubes + " Cubes")
           game.cities[i].recentlyInfected = false;
       }
     }, timer)
@@ -55,7 +67,37 @@ $(document).ready(function () {
 
   $("#drive").click(function(){
     $("#driveLocation1").html(game.playerCity.driveOption[0].name);
-    console.log(game.playerCity.driveOption[0].name);
+    $("#driveLocation2").html(game.playerCity.driveOption[1].name);
+    $("#driveLocation3").html(game.playerCity.driveOption[2].name);
   });
+
+    $("#driveLocation1").click(function(){
+        game.playerCity = game.playerCity.driveOption[0];
+        game.actionsLeft --;
+        locationMoveUpdate(game);
+    })
+
+    $("#driveLocation2").click(function(){
+        game.playerCity = game.playerCity.driveOption[1];
+        game.actionsLeft --;
+        locationMoveUpdate(game);
+    })
+
+    $("#driveLocation3").click(function(){
+        game.playerCity = game.playerCity.driveOption[2];
+        game.actionsLeft --;
+        locationMoveUpdate(game);
+    })
+
+  $("#flyButton").click(function(){
+    console.log(game.flightOptions);
+
+    for (let i=0; i<game.flightOptions.length; i++){
+      $("#flightOptions").append("<li>" + game.flightOptions[i].name + "</li>");
+    }
+  })
+
+
+
 // we can find the drive city, but cant append it to the dom
 });
