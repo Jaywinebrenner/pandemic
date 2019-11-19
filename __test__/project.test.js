@@ -13,10 +13,10 @@ describe ('Move cities', () => {
     let bos = new Boston ();
     let mia = new Miami();
     let game = new Game(atl, por, la, sf, den, dal, chi, ny, bos, mia);
-    let clickedCity = dal
-game.move(clickedCity);
-expect(game.playerCity).toEqual(dal);
-expect(game.actionsLeft).toEqual(1);
+    let clickedCity = dal;
+    game.move(clickedCity);
+    expect(game.playerCity).toEqual(dal);
+    expect(game.actionsLeft).toEqual(1);
   });
 });
 
@@ -53,13 +53,13 @@ describe ('remove cubes', () =>{
     let mia = new Miami();
     let game = new Game(por, atl, la, sf, den, dal, chi, ny, bos, mia);
     atl.cubes = 4;
-    game.isGreenCured = false
+    game.isGreenCured = false;
     game.removeCube();
 
     expect(atl.cubes).toEqual(3);
-    expect(game.actionsLeft).toEqual(1)
-  })
-})
+    expect(game.actionsLeft).toEqual(1);
+  });
+});
 
 describe ('use event card', () => {
   test ('should use the event card', () => {
@@ -74,8 +74,8 @@ describe ('use event card', () => {
     let bos = new Boston ();
     let mia = new Miami();
     let game = new Game(por, atl, la, sf, den, dal, chi, ny, bos, mia);
-    game.eventCard = "adrenelineCard"
+    game.eventCard = "adrenelineCard";
     game.useEventCard();
-    expect(game.actionsLeft).toEqual(3) 
-  })
-})
+    expect(game.actionsLeft).toEqual(3); 
+  });
+});

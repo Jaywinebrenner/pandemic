@@ -134,7 +134,7 @@ Game.prototype.pickDiseaseCity = function() {
   let i =  Math.floor(Math.random() * 10);
   this.cities[i].cubes = 4;
   this.cities[i].recentlyInfected = true;
-}
+};
 
 Game.prototype.removeCube = function() {
   if (this.playerCity.cubes > 0) {
@@ -153,7 +153,7 @@ Game.prototype.removeCube = function() {
     }
     this.actionsLeft --;
   }
-}
+};
 
 Game.prototype.startGame = function (game){
 
@@ -168,7 +168,7 @@ Game.prototype.startGame = function (game){
   this.cityCards = [this.cities[randomCity1], this.cities[randomCity2]];
   this.flightOptions = this.cityCards;
 
-}
+};
 Game.prototype.roundEnd = function (game) {
   game.pickDiseaseCity();
   this.actionsLeft = 2;
@@ -178,13 +178,13 @@ Game.prototype.roundEnd = function (game) {
     this.cityCards = [this.cities[randomCity1], this.cities[randomCity2]];
   }else if (this.cityCards[0] === ''){
     let randomCity1 =  Math.floor(Math.random() * 10);
-    this.cityCards.splice(0, 1, this.cities[randomCity1])
+    this.cityCards.splice(0, 1, this.cities[randomCity1]);
   } else if (this.cityCards[1] == ''){
     let randomCity1 =  Math.floor(Math.random() * 10);
-    this.cityCards.splice(1, 1, this.cities[randomCity1])
+    this.cityCards.splice(1, 1, this.cities[randomCity1]);
   }
 
   console.log(game.cityCards);
   this.flightOptions = this.cityCards;
 
-}
+};
