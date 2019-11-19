@@ -47,7 +47,14 @@
         <button type="button" name="button">Pass</button>
       </div>
       <div class="col-lg-2">
-        <button type="button" name="button">Research</button>
+        <button id ="researchButton"type="button" name="button">Research</button>
+        <ul id="researchOptions">
+          <div class="researchOptions">
+            <li id="researchCard1"></li>
+            <li id="researchCard2"></li>
+
+          </div>
+        </ul>
       </div>
     </div>
     <div class="row">
@@ -64,20 +71,20 @@
     </div>
     <div class="row">
       <div class="col-lg-4">
-      <h3>Portland <span id ="Portland"> </span></h3>
-      <h3>San Fransico <span id ="San-Fransico"> </span> </h3>
-      <h3>Los Angeles <span id ="LA"> </span> </h3>
+      <h3 class="redCity">Portland <span id ="Portland"> </span></h3>
+      <h3 class="redCity">San Fransico <span id ="San-Fransico"> </span> </h3>
+      <h3 class="redCity">Los Angeles <span id ="LA"> </span> </h3>
       </div>
       <div class="col-lg-4">
-        <h3>Denver <span id ="Denver"> </span></h3>
-        <h3>Chicago <span id ="Chicago"> </span></h3>
-        <h3>Dallas <span id ="Dallas"> </span></h3>
+        <h3 class="redCity">Denver <span id ="Denver"> </span></h3>
+        <h3 class="redCity">Dallas <span id ="Dallas"> </span></h3>
+        <h3 class="greenCity">Chicago <span id ="Chicago"> </span></h3>
       </div>
       <div class="col-lg-4">
-        <h3>New York <span id ="NYC"> </span></h3>
-        <h3>Boston <span id ="Boston"> </span></h3>
-        <h3>Atlanta <span id ="Atlanta"> </span></h3>
-        <h3>Miami <span id ="Miami"> </span></h3>
+        <h3 class="greenCity">New York <span id ="NYC"> </span></h3>
+        <h3 class="greenCity">Boston <span id ="Boston"> </span></h3>
+        <h3 class="greenCity">Atlanta <span id ="Atlanta"> </span></h3>
+        <h3 class="greenCity">Miami <span id ="Miami"> </span></h3>
 
       </div>
 
@@ -93,6 +100,9 @@
 </div>
     </div>
     <div> <img src="" id="testGif"> Gif SHould be here
+    </div>
+    <div id="endGame">
+      <h1 id=result></h1>
     </div>
   </div>
 </body>

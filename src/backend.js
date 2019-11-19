@@ -11,6 +11,8 @@ export class Game {
     this.actionsLeft = 2;
     this.greenResearchPoints = 0;
     this.redReasearchPoints = 0;
+    this.didYouWin = false;
+    this.didYouLose = false;
 
   }
 }
@@ -140,10 +142,12 @@ Game.prototype.removeCube = function() {
   if (this.playerCity.cubes > 0) {
     if ((this.playerCity.color === "Red") && (this.isRedCured === true)){
       this.playerCity.cubes = 0;
+      console.log('red cure');
 
     }
     else if ((this.playerCity.color === "Green") && (this.isGreenCured === true)) {
       this.playerCity.cubes = 0;
+      console.log('green cure');
 
 
     } else {
@@ -152,6 +156,7 @@ Game.prototype.removeCube = function() {
 
     }
     this.actionsLeft --;
+    console.log('no cure');
   }
 };
 
@@ -187,4 +192,38 @@ Game.prototype.roundEnd = function (game) {
   console.log(game.cityCards);
   this.flightOptions = this.cityCards;
 
+};
+
+Game.prototype.isResearchCompleted = function (){
+  if (this.greenResearchPoints === 4 && this.redReasearchPoints === 4){
+    this.isGreenCured = true;
+    this.isRedCured = true;
+  } else if(this.greenResearchPoints === 4){
+    this.isGreenCured = true;
+  }else if (this.redReasearchPoints === 4) {
+    this.isRedCured = true;
+  }
+
+};
+
+Game.prototype.checkWinLoss = function() {
+  let infectedCities = 0;
+  let curedCities = 0;
+  for (let i = 0; i < this.cities.length; i++) {
+    console.log(this.cities[i].cubes);
+    if (this.cities[i].cubes === 4) {
+      infectedCities ++;
+
+    }if (this.cities[i].cubes === 0){
+      curedCities ++;
+    }
+  }
+  if (infectedCities === 5) {
+    this.didYouLose = true;
+  }else if (curedCities === 8) {
+    this.didYouWin = true;
+
+  }
+  // console.log(infectedCities);
+  // console.log(curedCities);
 };

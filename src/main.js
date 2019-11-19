@@ -12,8 +12,20 @@ const showCard  = (game) => {
   $("#cityCard2").html(card2);
   $("#eventCard").html(eventCard);
 };
+let gameEnd = function (game) {
+  game.checkWinLoss();
+  if (game.didYouWin === true) {
+    alert("you win");
+
+  }else if (game.didYouLose === true)
+    alert('you lost');
+};
 let checkRoundEnd = function(game){
+  console.log(game.didYouWin);
+  console.log(game.didYouLose);
+  $("#researchOptions").hide();
   if(game.actionsLeft === 0){
+    gameEnd(game);
     console.log("round end");
     game.roundEnd(game);
     $("#actionCounter").html(game.actionsLeft);
@@ -33,25 +45,25 @@ let checkRoundEnd = function(game){
 };
 
 $(document).ready(function () {
-let searchTerm = "city"
+  let searchTerm = "city";
   let api = function() {
     let request = new XMLHttpRequest();
-      const url = `https://api.giphy.com/v1/gifs/translate?api_key=${process.env.API_KEY}&s=${searchTerm}`;
+    const url = `https://api.giphy.com/v1/gifs/translate?api_key=${process.env.API_KEY}&s=${searchTerm}`;
 
-      request.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-          const response = JSON.parse(this.responseText);
-          getElements(response);
-        }
+    request.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+        const response = JSON.parse(this.responseText);
+        getElements(response);
       }
+    };
 
-      request.open("GET", url, true);
-      request.send();
+    request.open("GET", url, true);
+    request.send();
 
-      const getElements = function(response) {
-       $("#testGif").attr("src", response.data.images.original.url);
-     }
-   }
+    const getElements = function(response) {
+      $("#testGif").attr("src", response.data.images.original.url);
+    };
+  };
   let atl = new Atlanta ();
   let por = new Portland ();
   let la = new La ();
@@ -73,7 +85,6 @@ let searchTerm = "city"
   mia.driveOption = [atl, dal, ''];
   ny.driveOption = [chi, bos, ''];
   let game = new Game (atl, por, la, sf, den, dal, chi, ny, bos, mia);
-
   let locationMoveUpdate = (game) => {
     $("#currentCitySpan").text(game.playerCity.name);
     $("#driveLocation1").html(game.playerCity.driveOption[0].name);
@@ -85,7 +96,7 @@ let searchTerm = "city"
 
   $("#start").click(function() {
     game.startGame(game);
-    searchTerm = `${game.playerCity.name}+buildings`
+    searchTerm = `${game.playerCity.name}+buildings`;
     api();
     console.log(searchTerm);
     $("#currentCitySpan").text(game.playerCity.name);
@@ -113,7 +124,7 @@ let searchTerm = "city"
   $("#driveLocation1").click(function(){
     game.playerCity = game.playerCity.driveOption[0];
     game.actionsLeft --;
-    searchTerm = `${game.playerCity}`
+    searchTerm = `${game.playerCity}`;
     api();
     locationMoveUpdate(game);
     checkRoundEnd(game);
@@ -215,6 +226,57 @@ let searchTerm = "city"
     checkRoundEnd(game);
   });
 
+  $("#researchButton").click(function(){
+    $("#researchOptions").show();
+    $("#researchCard1").text(game.cityCards[0].name);
+    $("#researchCard2").text(game.cityCards[1].name);
+  });
+  $("#researchCard1").click(function(){
+    if (game.cityCards[0].color === "Red") {
+      game.cityCards.splice(0, 1, "");
+      game.redReasearchPoints ++;
+      $("#redResearchPoints").html(game.redReasearchPoints);
+      game.actionsLeft --,
+      $("#actionCounter").html(game.actionsLeft);
+      console.log(game.cityCards);
+      $("#cityCard1").text("");
+      $("#cityCard2").text(game.cityCards[1].name);
+    } else if(game.cityCards[0].color === "Green"){
+      game.cityCards.splice(0, 1, "");
+      game.greenResearchPoints ++;
+      $("#greenResearchPoints").html(game.greenResearchPoints);
+      console.log(game.cityCards);
+      $("#cityCard1").text("");
+      $("#cityCard2").text(game.cityCards[1].name);
+      game.actionsLeft --;
+      $("#actionCounter").html(game.actionsLeft);
+    }
+    game.isResearchCompleted();
+    checkRoundEnd(game);
+  });
+  $("#researchCard2").click(function(){
+    if (game.cityCards[1].color === "Red") {
+      game.cityCards.splice(1, 1, "");
+      game.redReasearchPoints ++;
+      $("#redResearchPoints").html(game.redReasearchPoints);
+      game.actionsLeft --,
+      $("#actionCounter").html(game.actionsLeft);
+      console.log(game.cityCards);
+      $("#cityCard1").text(game.cityCards[0].name);
+      $("#cityCard2").text("");
+    } else if(game.cityCards[1].color === "Green"){
+      game.cityCards.splice(1, 1, "");
+      game.greenResearchPoints ++;
+      $("#greenResearchPoints").html(game.greenResearchPoints);
+      console.log(game.cityCards);
+      $("#cityCard1").text(game.cityCards[0].name);
+      $("#cityCard2").text("");
+      game.actionsLeft --;
+      $("#actionCounter").html(game.actionsLeft);
+    }
+    game.isResearchCompleted();
+    checkRoundEnd(game);
+  });
 
 
 });
