@@ -8,26 +8,36 @@ import { Game, Dallas, Portland, La, SanFransico, Denver, Chicago, Ny, Boston, M
 
 
 $(document).ready(function () {
+  let atl = new Atlanta ();
+  let por = new Portland ();
+  let la = new La ();
+  let sf = new SanFransico ();
+  let den = new Denver ();
+  let dal = new Dallas ();
+  let bos = new Boston ();
+  let chi = new Chicago ();
+  let mia = new Miami ();
+  let ny = new Ny ();
+  atl.driveOption = [dal, mia, bos];
+  por.driveOption = [den, sf];
+  la.driveOption = [sf, dal];
+  sf.driveOption = [por, la]
+  den.driveOption = [chi,dal,por];
+  dal.driveOption = [den,la,atl];
+  bos.driveOption= [chi, ny, atl];
+  chi.driveOption = [den, bos, ny];
+  mia.driveOption = [atl, dal];
+  ny.driveOption = [chi, bos];
+  let game = new Game (atl, por, la, sf, den, dal, chi, ny, bos, mia);
   $("#start").click(function() {
-    let atl = new Atlanta ();
-    let por = new Portland ();
-    let la = new La ();
-    let sf = new SanFransico ();
-    let den = new Denver ();
-    let dal = new Dallas ();
-    let chi = new Chicago ();
-    let ny = new Ny ();
-    let bos = new Boston ();
-    let mia = new Miami();
-    let game = new Game(atl, por, la, sf, den, dal, chi, ny, bos, mia);
     game.startGame(game);
-    let timer = 3000
+    let timer = 1000
     for(let i=0; i<game.cities.length; i++){
-      timer += 1000
+      timer += 400;
       setTimeout(function(){
       if (game.cities[i].recentlyInfected === true){
           $("#diseaseDisplay").append(game.cities[i].name);
-          game.cities[i].recentlyInfected = false
+          game.cities[i].recentlyInfected = false;
       }
     }, timer)
     }
@@ -43,4 +53,9 @@ $(document).ready(function () {
     showCard(game);
   });
 
+  $("#drive").click(function(){
+    $("#driveLocation1").html(game.playerCity.driveOption[0].name);
+    console.log(game.playerCity.driveOption[0].name);
+  });
+// we can find the drive city, but cant append it to the dom
 });

@@ -16,96 +16,94 @@ export class Game {
 }
 
 export class Portland {
-  constructor (){
+  constructor (den, sf){
     this.name = "Portland";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [Denver, SanFransico];
+    this.driveOption = [den, sf];
     this.recentlyInfected = false;
   }
 }
 export class SanFransico {
-  constructor (){
+  constructor (por, la){
     this.name = "San Fransico";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [Portland, La];
+    this.driveOption = [por, la];
     this.recentlyInfected = false;
   }
 }
 export class La {
-  constructor (){
+  constructor (sf, dal){
     this.name = "Los Angeles";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [SanFransico, Dallas];
+    this.driveOption = [sf, dal];
     this.recentlyInfected = false;
   }
 }
 export class Dallas {
-  constructor (){
+  constructor (den, la, atl){
     this.name = "Dallas";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [Denver, La, Atlanta];
+    this.driveOption = [den, la, atl];
     this.recentlyInfected = false;
   }
 }
 export class Denver {
-  constructor (){
+  constructor (chi, dal, por){
     this.name = "Denver";
     this.cubes = 0;
     this.color = "Red";
-    this.driveOption = [Chicago, Dallas, Portland]
+    this.driveOption = [chi, dal, por];
     this.recentlyInfected = false;
   }
 }
 export class Chicago {
-  constructor (){
+  constructor (den, bos, ny){
     this.name = "Chicago";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [Denver, Boston, Ny];
+    this.driveOption = [den, bos, ny];
     this.recentlyInfected = false;
   }
 }
 export class Ny {
-  constructor (){
+  constructor (chi, bos){
     this.name = "New York";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [Chicago, Boston];
+    this.driveOption = [chi, bos];
     this.recentlyInfected = false;
   }
 }
 export class Boston {
-  constructor (){
+  constructor (chi, ny, atl){
     this.name = "Boston";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [Chicago, Ny, Atlanta];
+    this.driveOption = [chi, ny, atl];
     this.recentlyInfected = false;
   }
 }
 export class Miami {
-  constructor (){
+  constructor (atl, dal){
     this.name = "Miami";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [Atlanta, Dallas];
+    this.driveOption = [atl, dal];
     this.recentlyInfected = false;
   }
 }
 export class Atlanta {
-  constructor (){
+  constructor (dal, mia, bos){
     this.name = "Atlanta";
     this.cubes = 0;
     this.color = "Green";
-    this.driveOption = [Dallas, Miami, Boston];
+    this.driveOption = [dal, mia, bos];
     this.recentlyInfected = false;
     this.isResearch = true;
-
-
   }
 }
 
