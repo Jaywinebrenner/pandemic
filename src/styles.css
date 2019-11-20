@@ -7,3 +7,11 @@ ul {
 .greenCity {
   color: green;
 }
+
+#gameAreaDiv{
+  display: none;
+}
+
+#researchButton{
+  display: none;
+}

@@ -7,102 +7,124 @@
 <body>
   <h1>Pandemic</h1>
   <div class="container">
-
-    <button type="button" name="button" id="start">Start</button>
-    <div class="row">
-      <div class="col-lg-2">
-        <button id="flyButton" type="button" name="button">Fly</button>
-        <ul id="flightOptions">
-          <li id="flightLocation1"></li>
-          <li id="flightLocation2"></li>
-          <li id="flightLocation3"></li>
-          <li id="flightLocation4"></li>
-          <li id="flightLocation5"></li>
-          <li id="flightLocation6"></li>
-          <li id="flightLocation7"></li>
-          <li id="flightLocation8"></li>
-          <li id="flightLocation9"></li>
-          <li id="flightLocation10"></li>
-
-        </ul>
-      </div>
-      <div class="col-lg-2">
-        <button type="button" name="button" id="drive">Drive</button>
+    <div id="idInsturctions">
+      <p>Pandemic!! Stop the the virus from infecting the the United States of America</p>
+      <p>Every round you get 2 actions you can take, as designated by the Action Counter. You can drive to a close city, fly to a city you have a card for and research if you are in a city that has a research station. After 2 actions a new round starts and a new city gets infected. Everytime a city gets infected, it receives 4 cubes. You can cure via the "Cure Button" to remove 1 cube at the cost of one action point. If you have researched the appropriate color in a research station you can remove all disease cubes from an infected city if it matches the researched color.</p>
+      <p>If you are in a city with a research station, you have access to a research button. By hitting the button, you can research the disease by spending a city card. Your research progress will go towards the corresponding city color. You will find the cure after attaining 4 research points.  </p>
+      <p>If 5 cities are infected with 4 disease cubes, you lose the game. If there are 8 cured cities simultainiously, you win the game.</p>
+      <button type="button" name="button" id="start">Start</button>
+    </div>
+    <div id="gameAreaDiv">
 
 
-            <div class="driveOptions"><span id="driveLocation1"></span>
-              <span id="driveLocation2"></span>
-              <span id="driveLocation3"></span>
+      <div id="allGameButtonsRow"class="row">
+        <div class="col-lg-2">
+          <button id="flyButton" type="button" name="button">Fly</button>
+          <ul id="flightOptions">
+            <li id="flightLocation1"></li>
+            <li id="flightLocation2"></li>
+            <li id="flightLocation3"></li>
+            <li id="flightLocation4"></li>
+            <li id="flightLocation5"></li>
+            <li id="flightLocation6"></li>
+            <li id="flightLocation7"></li>
+            <li id="flightLocation8"></li>
+            <li id="flightLocation9"></li>
+            <li id="flightLocation10"></li>
+
+          </ul>
+        </div>
+        <div class="col-lg-2">
+          <button type="button" name="button" id="drive">Drive</button>
+
+
+          <div class="driveOptions"><span id="driveLocation1"></span>
+            <span id="driveLocation2"></span>
+            <span id="driveLocation3"></span>
+          </div>
+
+
+        </div>
+        <div class="col-lg-2">
+          <button type="button" name="button">Use Event Card</button>
+        </div>
+        <div class="col-lg-2">
+          <button type="button" name="button" id="removeCubeButton">Remove Cube</button>
+        </div>
+        <div class="col-lg-2">
+          <button type="button" name="button">Pass</button>
+        </div>
+        <div class="col-lg-2">
+          <button id ="researchButton"type="button" name="button">Research</button>
+          <ul id="researchOptions">
+            <div class="researchOptions">
+              <li id="researchCard1"></li>
+              <li id="researchCard2"></li>
+
             </div>
-
-
+          </ul>
+        </div>
       </div>
-      <div class="col-lg-2">
-        <button type="button" name="button">Use Event Card</button>
-      </div>
-      <div class="col-lg-2">
-        <button type="button" name="button" id="removeCubeButton">Remove Cube</button>
-      </div>
-      <div class="col-lg-2">
-        <button type="button" name="button">Pass</button>
-      </div>
-      <div class="col-lg-2">
-        <button id ="researchButton"type="button" name="button">Research</button>
-        <ul id="researchOptions">
-          <div class="researchOptions">
-            <li id="researchCard1"></li>
-            <li id="researchCard2"></li>
+      <div class="row">
+        <div class="col-lg-6">
+          <h2><span id= "diseaseDisplay">Next Disease City </span</h2>
+          </div>
+          <div class="col-lg-6">
+            <h2>Actions left</h2>
+            <h3><span id= actionCounter> 2 </span></h3>
+            <h2>Research Progress</h2>
+            <h3>Green Research: <span id="greenResearchPoints">0</span></h3>
+            <h3>Red Research: <span id="redResearchPoints">0</span></h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <h3 class="redCity">Portland <span id ="Portland"> </span></h3>
+            <h3 class="redCity">San Fransico <span id ="San-Fransico"> </span> </h3>
+            <h3 class="redCity">Los Angeles <span id ="LA"> </span> </h3>
+          </div>
+          <div class="col-lg-4">
+            <h3 class="redCity">Denver <span id ="Denver"> </span></h3>
+            <h3 class="redCity">Dallas <span id ="Dallas"> </span></h3>
+            <h3 class="greenCity">Chicago <span id ="Chicago"> </span></h3>
+          </div>
+          <div class="col-lg-4">
+            <h3 class="greenCity">New York <span id ="NYC"> </span></h3>
+            <h3 class="greenCity">Boston <span id ="Boston"> </span></h3>
+            <h3 class="greenCity">Atlanta <span id ="Atlanta"> </span></h3>
+            <h3 class="greenCity">Miami <span id ="Miami"> </span></h3>
 
           </div>
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-<div class="col-lg-6">
-<h2><span id= "diseaseDisplay">Next Disease City </span</h2>
-</div>
-<div class="col-lg-6">
-<h2>Actions left</h2>
-<h3><span id= actionCounter> 2 </span></h3>
-<h2>Research Progress</h2>
-<h3>Green Research: <span id="greenResearchPoints">0</span></h3>
-<h3>Red Research: <span id="redResearchPoints">0</span></h3>
-</div>
-    </div>
-    <div class="row">
-      <div class="col-lg-4">
-      <h3 class="redCity">Portland <span id ="Portland"> </span></h3>
-      <h3 class="redCity">San Fransico <span id ="San-Fransico"> </span> </h3>
-      <h3 class="redCity">Los Angeles <span id ="LA"> </span> </h3>
-      </div>
-      <div class="col-lg-4">
-        <h3 class="redCity">Denver <span id ="Denver"> </span></h3>
-        <h3 class="redCity">Dallas <span id ="Dallas"> </span></h3>
-        <h3 class="greenCity">Chicago <span id ="Chicago"> </span></h3>
-      </div>
-      <div class="col-lg-4">
-        <h3 class="greenCity">New York <span id ="NYC"> </span></h3>
-        <h3 class="greenCity">Boston <span id ="Boston"> </span></h3>
-        <h3 class="greenCity">Atlanta <span id ="Atlanta"> </span></h3>
-        <h3 class="greenCity">Miami <span id ="Miami"> </span></h3>
-
-      </div>
 
 
-    </div>
-    <div class="row">
-<div class="col-lg-4">
-  <h4>Current city: <span id="currentCitySpan"></span></h4>
-  <p><span id ="cityCard1">City Card 1</span>
-  <span id ="cityCard2">City Card 2</span>
-<span id ="eventCard">Event Card</span></p>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <h4>Current city: <span id="currentCitySpan"></span></h4>
+            <p><span id ="cityCard1">City Card 1</span>
+              <span id ="cityCard2">City Card 2</span>
+              <span id ="eventCard">Event Card</span></p>
 
-</div>
-    </div>
-    <div> <img src="" id="testGif"> Gif SHould be here
-    </div>
-    <div id="endGame">
-      <h1 id=result></h1>
+            </div>
+          </div>
+          <div> <img src="" id="testGif"> Gif SHould be here
+          </div>
+          <div id="endGame">
+            <h1 id=result></h1>
+          </div>
+        </div>
+      </div>
+      <div id="winWrapper">
+        <div id="winDiv">
+          <h1>YOU WIN!</h1>
+
+        </div>
+        <div id="lossDiv">
+          <h1>YOU LOSE!</h1>
+
+        </div>
+        <img id="imageWinLoss" src="" alt="">
+      </div>
     </div>
   </div>
 </body>

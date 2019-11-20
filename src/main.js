@@ -15,16 +15,20 @@ const showCard  = (game) => {
 let gameEnd = function (game) {
   game.checkWinLoss();
   if (game.didYouWin === true) {
-    alert("you win");
+  $("#winDiv").show();
+  apiWinLoss("happy");
+
 
   }else if (game.didYouLose === true)
-    alert('you lost');
+    $("#lossDiv").show();
+    apiWinLoss("sad");
 };
 let checkRoundEnd = function(game){
   console.log(game.didYouWin);
   console.log(game.didYouLose);
   $("#researchOptions").hide();
   if(game.actionsLeft === 0){
+    $("#allGameButtonsRow").hide();
     gameEnd(game);
     console.log("round end");
     game.roundEnd(game);
@@ -42,10 +46,33 @@ let checkRoundEnd = function(game){
       }, timer);
     }
   }
+  $("#allGameButtonsRow").show();
 };
+
+
+let apiWinLoss = function(searchTermWinLoss) {
+  let request = new XMLHttpRequest();
+  const url = `https://api.giphy.com/v1/gifs/translate?api_key=${process.env.API_KEY}&s=${searchTermWinLoss}`;
+
+  request.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      const response = JSON.parse(this.responseText);
+      getElements(response);
+    }
+  };
+
+  request.open("GET", url, true);
+  request.send();
+
+  const getElements = function(response) {
+    $("#imageWinLoss").attr("src", response.data.images.original.url);
+  };
+};
+
 
 $(document).ready(function () {
   let searchTerm = "city";
+
   let api = function() {
     let request = new XMLHttpRequest();
     const url = `https://api.giphy.com/v1/gifs/translate?api_key=${process.env.API_KEY}&s=${searchTerm}`;
@@ -85,16 +112,26 @@ $(document).ready(function () {
   mia.driveOption = [atl, dal, ''];
   ny.driveOption = [chi, bos, ''];
   let game = new Game (atl, por, la, sf, den, dal, chi, ny, bos, mia);
+  let hasResearchStation = (game) => {
+    if(game.playerCity.isResearch === true){
+      $("#researchButton").show();
+    } else {
+      $("#researchButton").hide();
+    }
+  }
   let locationMoveUpdate = (game) => {
     $("#currentCitySpan").text(game.playerCity.name);
     $("#driveLocation1").html(game.playerCity.driveOption[0].name);
     $("#driveLocation2").html(game.playerCity.driveOption[1].name);
     $("#driveLocation3").html(game.playerCity.driveOption[2].name);
     $("#actionCounter").html(game.actionsLeft);
+    hasResearchStation(game);
   };
 
 
   $("#start").click(function() {
+    $("#gameAreaDiv").show();
+    $("#idInsturctions").hide();
     game.startGame(game);
     searchTerm = `${game.playerCity.name}+buildings`;
     api();
